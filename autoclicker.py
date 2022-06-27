@@ -6,6 +6,8 @@ class Example():
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("AutoClicker GUI")
+        self.root.wm_geometry('950x500')
+        self.root.resizable(width=False, height=False)
 
         # click interval widget
         self.click_interval = tk.Frame(self.root, bg="red", height=75)
@@ -68,18 +70,57 @@ class Example():
 
         self.click_options.pack(side="left", fill="both", expand=True)
         self.click_repeat.pack(side="right", fill="both", expand=True)
+        ## click repeat content
+        click_repeat_header_label = tk.Label(self.click_repeat, text='Click Repeat :')
+        click_repeat_header_label.grid(row=0, column=1)
+
+        click_repeat_button = tk.Radiobutton(self.click_repeat, text='Repeat :', value=1)  # , variable=makro_button_on
+        click_repeat_button.grid(row=1, column=1)
+
+        click_repeat_combo_box = ttk.Combobox(self.click_repeat, values=['1', '2', '3', '4', '5'])
+        click_repeat_combo_box.grid(row=1, column=2)
+        click_repeat_combo_box.current(0)
+
+        click_repeat_combo_box_label = tk.Label(self.click_repeat, text='times')
+        click_repeat_combo_box_label.grid(row=2, column=2)
+
+        repeat_until_stopped_button = tk.Radiobutton(self.click_repeat, text='Repeat until stopped', value=1)  # , variable=makro_button_on
+        repeat_until_stopped_button.grid(row=3, column=1)
 
 
 
         # makro
-        self.makro = tk.Frame(self.root, width=200, height=250, bg='blue')
+        self.makro = tk.Frame(self.root, width=200, height=250)
+        # makro frame 1
+        self.makro_settings_frame = tk.Frame(self.makro, width=100, height=350, bg='blue')
+        makro_radio_button = tk.Radiobutton(self.makro_settings_frame, text='Makro', value=1) # , variable=makro_button_on
+        makro_radio_button.grid(row=0, column=0)
+        # makro button aufnehmen
+        record_makro = tk.Button(self.makro_settings_frame, text='REC')
+        record_makro.grid(row=0, column=1)
+        makro_combo_box = ttk.Combobox(self.makro_settings_frame, values=['Makro 1', 'Makro 2', 'Makro 3', 'Makro 4', 'Makro 5'])
+        makro_combo_box.grid(row=1)
+        makro_combo_box.current(0)
+# missing : comboExample.bind("<<ComboboxSelected>>", callbackFunc)
+        # makro frame 2
+        self.makro_text_frame = tk.Frame(self.makro, width=100, height=350, bg='white')
+        makro_rec_text_label = tk.Label(self.makro_text_frame, text='makros')
+        makro_rec_text_label.pack()
 
-
+        self.makro_settings_frame.pack(side="top", fill="both")
+        self.makro_text_frame.pack(side="bottom", fill="both", expand=True)
 
 
         # special eff
         self.special_effects = tk.Frame(self.root, width=150, height=60, bg='orange')
 
+        special_effect_button = tk.Radiobutton(self.special_effects, text='Cheatcode :', value=1)  # , variable=makro_button_on
+        special_effect_button.grid(row=0, column=0)
+
+        special_effect_combo_box = ttk.Combobox(self.special_effects,
+                                       values=['Cheat 1', 'Cheat 2', 'Cheat 3', 'Cheat 4', 'Cheat 5'])
+        special_effect_combo_box.grid(row=0, column=1)
+        special_effect_combo_box.current(0)
 
 
 
