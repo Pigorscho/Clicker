@@ -24,15 +24,15 @@ class Example():
         secs_label = tk.Label(self.click_interval_frame, text='secs', padx=30)
         millisecs_label = tk.Label(self.click_interval_frame, text='milliseconds', padx=30)
 
-        click_intervall_label.pack()
-        hours_input.pack(side='left', expand=True)
-        hours_label.pack(side='left', expand=True)
-        mins_input.pack(side='left', expand=True)
-        mins_label.pack(side='left', expand=True)
-        secs_input.pack(side='left', expand=True)
-        secs_label.pack(side='left', expand=True)
-        millisecs_input.pack(side='left', expand=True)
-        millisecs_label.pack(side='left', expand=True)
+        click_intervall_label.grid(row=0, column=1, columnspan=2)
+        hours_input.grid(row=1, column=1)
+        hours_label.grid(row=1, column=2)
+        mins_input.grid(row=1, column=3)
+        mins_label.grid(row=1, column=4)
+        secs_input.grid(row=1, column=5)
+        secs_label.grid(row=1, column=6)
+        millisecs_input.grid(row=1, column=7)
+        millisecs_label.grid(row=1, column=8)
 
         self.click_interval.pack(fill='both', expand=True)
         self.click_interval_frame.pack()
@@ -59,7 +59,7 @@ class Example():
         mouse_button_combo_box.grid(row=1, column=1)
         mouse_button_combo_box.current(0)
 # missing : comboExample.bind("<<ComboboxSelected>>", callbackFunc)
-        click_type_header_label = tk.Label(self.click_options_frame, text='Click Type :')
+        click_type_header_label = tk.Label(self.click_options_frame, text='Click Type :      ')
         click_type_header_label.grid(row=2, column=0)
 
         click_type_combo_box = ttk.Combobox(self.click_options_frame, values=['Single',
@@ -78,18 +78,21 @@ class Example():
         ## click repeat content
 
         self.click_repeat_frame = tk.Frame(self.click_repeat_frame_all, width=150, height=75, bg='purple', padx=10, pady=10)
-        click_repeat_header_label = tk.Label(self.click_repeat_frame, text='Click Repeat :')
+        click_repeat_header_label = tk.Label(self.click_repeat_frame, text='Click Repeat : ')
         click_repeat_header_label.grid(row=0, column=0)
 
-        click_repeat_button = tk.Radiobutton(self.click_repeat_frame, text='Repeat :', value=1)  # , variable=makro_button_on
+        click_repeat_button = tk.Radiobutton(self.click_repeat_frame, text='Repeat :    ', value=1)  # , variable=makro_button_on
         click_repeat_button.grid(row=1, column=0)
 
-        click_repeat_combo_box = ttk.Combobox(self.click_repeat_frame, values=['1', '2', '3', '4', '5'], width=5)
-        click_repeat_combo_box.grid(row=1, column=1)
-        click_repeat_combo_box.current(0)
+        click_amount_spinbox = tk.Spinbox(self.click_repeat_frame, from_=0, to=999, width=5)
+        click_amount_spinbox.grid(row=1, column=1)
+
+        # click_repeat_combo_box = ttk.Combobox(self.click_repeat_frame, values=['1', '2', '3', '4', '5'], width=5)
+        # click_repeat_combo_box.grid(row=1, column=1)
+        # click_repeat_combo_box.current(0)
 
         click_repeat_combo_box_label = tk.Label(self.click_repeat_frame, text='times')
-        click_repeat_combo_box_label.grid(row=1, column=2)
+        click_repeat_combo_box_label.grid(row=1, column=3)
 
         # repeat_until_stopped_frame
         self.repeat_until_stopped_frame = tk.Frame(self.click_repeat_frame_all, width=250, height=75, bg='limegreen', padx=10, pady=10)
@@ -106,18 +109,18 @@ class Example():
         self.makro = tk.Frame(self.root, width=200, height=250, bg='brown', padx=10, pady=10)
         # makro frame 1
         self.makro_settings_frame = tk.Frame(self.makro, width=100, height=350, bg='blue', padx=10, pady=10)
-        makro_radio_button = tk.Radiobutton(self.makro_settings_frame, text='Makro', value=1) # , variable=makro_button_on
+        makro_radio_button = tk.Radiobutton(self.makro_settings_frame, text='Makro', value=1, width=10) # , variable=makro_button_on
         makro_radio_button.grid(row=0, column=0)
         # makro button aufnehmen
-        record_makro = tk.Button(self.makro_settings_frame, text='REC')
+        record_makro = tk.Button(self.makro_settings_frame, text='       REC       ', foreground='red',)
         record_makro.grid(row=0, column=1)
-        makro_combo_box = ttk.Combobox(self.makro_settings_frame, values=['Makro 1', 'Makro 2', 'Makro 3', 'Makro 4', 'Makro 5'])
+        makro_combo_box = ttk.Combobox(self.makro_settings_frame, values=['Makro 1', 'Makro 2', 'Makro 3', 'Makro 4', 'Makro 5'], width=21)
         makro_combo_box.grid(row=1, columnspan=2)
         makro_combo_box.current(0)
 # missing : comboExample.bind("<<ComboboxSelected>>", callbackFunc)
         # makro frame 2
         self.makro_text_frame = tk.Frame(self.makro, width=100, height=350, bg='white', padx=10, pady=10)
-        makro_rec_text_label = tk.Label(self.makro_text_frame, text='makros')
+        makro_rec_text_label = tk.Label(self.makro_text_frame, text='makros\neigenschaften \nwerden \nhier\nangezeigt', width=15)
         makro_rec_text_label.pack()
 
         self.makro_settings_frame.pack(side="top", fill="both")
@@ -128,10 +131,10 @@ class Example():
         self.special_effects = tk.Frame(self.root, width=150, height=60, bg='orange', padx=10, pady=10)
         self.special_effects_frame = tk.Frame(self.special_effects, width=150, height=60, bg='white', padx=10, pady=10)
 
-        special_effect_button = tk.Radiobutton(self.special_effects_frame, text='Cheatcode :', value=1)  # , variable=makro_button_on
+        special_effect_button = tk.Radiobutton(self.special_effects_frame, text='Cheatcode :', value=1, width=48)  # , variable=makro_button_on
         special_effect_button.grid(column=0, row=0)
 
-        special_effect_combo_box = ttk.Combobox(self.special_effects_frame,
+        special_effect_combo_box = ttk.Combobox(self.special_effects_frame, width=48,
                                        values=['Cheat 1', 'Cheat 2', 'Cheat 3', 'Cheat 4', 'Cheat 5'])
         special_effect_combo_box.grid(column=1, row=0)
         special_effect_combo_box.current(0)
@@ -150,13 +153,7 @@ class Example():
         stop_button.grid(column=2, row=0)
         hotkey_settings_button.grid(column=3, row=0)
 
-        self.handle_button_frame
-
-
-
         self.handle_button_frame.pack()
-
-
 
         self.click_interval.grid(row=0, columnspan=2, rowspan=1, sticky='ew')
         self.center_click_options.grid(row=1, column=1, rowspan=2, sticky='nsew')
@@ -164,11 +161,8 @@ class Example():
         self.special_effects.grid(row=3, columnspan=3, rowspan=1, sticky='ew')
         self.handle_button.grid(row=4, columnspan=3, rowspan=1, sticky='nsew')
 
-
-
         self.root.grid_rowconfigure(1, weight=1)
         self.root.grid_columnconfigure(1, weight=1)
-
 
         self.root.mainloop()
 
