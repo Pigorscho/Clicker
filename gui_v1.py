@@ -1,19 +1,24 @@
 import tkinter as tk
+from tkinter import ttk
 
+class  MainFrame(ttk.Frame):
+    def __init__(self, container):
+        super().__init__(self, container)
+        # setup the grid layout manager
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(0, weight=3)
 
-class SampleApp(tk.Tk):
+class InputFrame(ttk.Frame):
+    def __init__(self, container, ):
+        super().__init__(container)
+        # setup the grid layout manager
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(0, weight=3)
 
-    def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
-
+        self.__create_widgets()
 
 
 
 if __name__ == "__main__":
-    app = SampleApp()
-    window_width = 1500
-    window_height = 800
-    width = app.winfo_screenwidth()
-    height = app.winfo_screenheight()
-    app.geometry('%dx%d+%d+%d' % (window_width, window_height, width*0.5-(window_width/2), height*0.5-(window_height/2)))
+    app = App()
     app.mainloop()
